@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Pokes</title>
+</head>
+<body>
+	<header>
+		<div id="headerleft">
+			<h2>Welcome, {{user.fname}}!</h2>
+			<p>{{pokes.totalpokers}}</p>	
+		</div>
+		<a href="{% url 'logreg:logreg_logout' %}">Logout</a>		
+	</header>
+	{% for message in messages %}
+		{{message}}
+	{% endfor %}
+	<div id="pokelist">
+			{% for poker in pokerlist %}
+				<p>{{ poker.send_poke.fname }} poked you {{ poker.history }} times.</p>
+			{% endfor %}
+	</div>
+	<div id="potentialpoke">
+		<table>
+			<thead>
+				<td>
+					<p>Name</p>
+				</td>
+				<td>
+					<p>Alias</p>
+				</td>
+				<td>
+					<p>Email Address</p>
+				</td>
+				<td>
+					<p>Poke History</p>
+				</td>
+				<td>
+					<p>Action</p>
+				</td>
+			</thead>
+			<tbody>
+				{% for pokee in pokees %}
+					<tr>
+						<td>
+							<p>{{ pokee.fname }} {{ pokee.lname }}</p>
+						</td>
+						<td>
+							<p>{{ pokee.alias }}</p>
+						</td>
+						<td>
+							<p>{{ pokee.email }}</p>
+						</td>
+						<td>
+							<p>{{ pokee.history }}</p>
+						</td>
+						<td>
+							<form action="{% url 'poke:poke_poke' pokedID=pokee.id %}" method="post">
+							{% csrf_token %}
+								<input type="submit" value="Poke">
+							</form>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

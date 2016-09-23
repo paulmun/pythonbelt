@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'apps.logreg',
+    'apps.poke',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -79,6 +81,19 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'pythonbelt', # This name must be lowercase but can be anything!
+#         'USER': 'paulmun', # you can put whatever you want here
+#         'PASSWORD': 'chicken123', # you can put whatever you want here
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
+
+# STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 
 # Password validation
